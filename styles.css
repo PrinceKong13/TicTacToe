@@ -1,40 +1,41 @@
 #board {
-    text-align: center;
-    padding-top: 3 em;
-  }
-  
-  .row > div {
-    float: left;
-    height: 100px;
-    width: 100px;
-    cursor: pointer;
-  }
-  
-  .row {
-    width: 302px;
-    margin: 0 auto;
-    clear: both;
-  }
-  
-  .top {
-    border-bottom: 1px solid black;
-  }
-  
-  .bottom {
-    border-top: 1px solid black;
-  }
-  
-  .left {
-    border-right: 1px solid black;
-  }
-  
-  .right {
-    border-left: 1px solid black;
-  }
-  
-  .middle {
-  }
-  
-  .center {
-  }
-  
+  text-align: center;
+  padding-top: 3 em;
+}
+
+.row > div {
+  float: left;
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.row {
+  width: 302px;
+  margin: 0 auto;
+  clear: both;
+  line-height: 100px;
+  font-size: 75px;
+}
+
+.top {
+  border-bottom: 1px solid black;
+}
+
+.bottom {
+  border-top: 1px solid black;
+}
+
+.left {
+  border-right: 1px solid black;
+}
+
+.right {
+  border-left: 1px solid black;
+}
+
+.middle {
+}
+
+.center {
+}
