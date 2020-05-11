@@ -33,3 +33,7 @@
 .right {
   border-left: 1px solid black;
 }
+
+h2 {
+  height: 50px;
+}

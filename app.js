@@ -2,6 +2,7 @@ let cells = document.querySelectorAll(".row > div");
 let lastPlayerMove = "O";
 let winnerDisplay = document.querySelector("#board > h2");
 let numOfClicks = 0;
+let gameEnd = false;
 
 for (let i = 0; i < cells.length; i++) {
   cells[i].addEventListener("click", cellClicked);
@@ -9,7 +10,9 @@ for (let i = 0; i < cells.length; i++) {
 
 //Places an X or an O in the clicked cell depending on whose turn it is
 function cellClicked() {
-  if (lastPlayerMove === "O") {
+  if (gameEnd === true) {
+    resetBoard();
+  } else if (lastPlayerMove === "O") {
     event.target.textContent = "X";
     lastPlayerMove = "X";
     ++numOfClicks;
@@ -22,7 +25,7 @@ function cellClicked() {
   }
 }
 
-//checks to see if there is a winner after each click and displays a message if so
+//checks to see if there is a winner after each click and displays a message if so. Will also determine draws
 function checkWinner() {
   if (
     (cells[0].textContent === lastPlayerMove &&
@@ -52,16 +55,21 @@ function checkWinner() {
   ) {
     winnerDisplay.textContent = lastPlayerMove + " Wins!";
     console.log(lastPlayerMove + " Wins");
-    
+    gameEnd = true;
   } else if (numOfClicks === 9) {
     console.log("Draw");
+    winnerDisplay.textContent = "Draw!";
+    gameEnd = true;
   }
 }
 
 //resets the board
 function resetBoard() {
   lastPlayerMove = "O";
+  numOfClicks = 0;
+  gameEnd = "false";
   for (let i = 0; i < cells.length; i++) {
     cells[i].textContent = "";
   }
+  winnerDisplay.textContent = " ";
 }
