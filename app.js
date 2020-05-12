@@ -54,10 +54,8 @@ function checkWinner() {
       cells[2].textContent === lastPlayerMove)
   ) {
     winnerDisplay.textContent = lastPlayerMove + " Wins!";
-    console.log(lastPlayerMove + " Wins");
     gameEnd = true;
   } else if (numOfClicks === 9) {
-    console.log("Draw");
     winnerDisplay.textContent = "Draw!";
     gameEnd = true;
   }
