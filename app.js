@@ -8,7 +8,7 @@ for (let i = 0; i < cells.length; i++) {
   cells[i].addEventListener("click", cellClicked);
 }
 
-//Places an X or an O in the clicked cell depending on whose turn it is
+//Places an X or an O in the clicked cell depending on whose turn it is and resets the board at game end
 function cellClicked() {
   if (gameEnd === true) {
     resetBoard();
@@ -67,7 +67,7 @@ function checkWinner() {
 function resetBoard() {
   lastPlayerMove = "O";
   numOfClicks = 0;
-  gameEnd = "false";
+  gameEnd = false;
   for (let i = 0; i < cells.length; i++) {
     cells[i].textContent = "";
   }
