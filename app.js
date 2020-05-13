@@ -14,7 +14,11 @@ for (let i = 0; i < cells.length; i++) {
 function cellClicked() {
   if (gameState.gameEnd === true) {
     resetBoard();
-  } else if (gameState.lastPlayerMove === "O") {
+  } else if 
+    (event.target.textContent === "X" || event.target.textContent === "O") {
+        ;
+    }
+  else if (gameState.lastPlayerMove === "O") {
     event.target.textContent = "X";
     gameState.lastPlayerMove = "X";
     ++gameState.numOfClicks;
