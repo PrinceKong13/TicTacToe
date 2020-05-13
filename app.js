@@ -1,8 +1,10 @@
 let cells = document.querySelectorAll(".row > div");
-let lastPlayerMove = "O";
 let winnerDisplay = document.querySelector("#board > h2");
-let numOfClicks = 0;
-let gameEnd = false;
+let gameState = {
+    gameEnd: false,
+    numOfClicks: 0,
+    lastPlayerMove: "O"
+};
 
 for (let i = 0; i < cells.length; i++) {
   cells[i].addEventListener("click", cellClicked);
@@ -10,17 +12,17 @@ for (let i = 0; i < cells.length; i++) {
 
 //Places an X or an O in the clicked cell depending on whose turn it is and resets the board at game end
 function cellClicked() {
-  if (gameEnd === true) {
+  if (gameState.gameEnd === true) {
     resetBoard();
-  } else if (lastPlayerMove === "O") {
+  } else if (gameState.lastPlayerMove === "O") {
     event.target.textContent = "X";
-    lastPlayerMove = "X";
-    ++numOfClicks;
+    gameState.lastPlayerMove = "X";
+    ++gameState.numOfClicks;
     checkWinner();
   } else {
     event.target.textContent = "O";
-    lastPlayerMove = "O";
-    ++numOfClicks;
+    gameState.lastPlayerMove = "O";
+    ++gameState.numOfClicks;
     checkWinner();
   }
 }
@@ -28,44 +30,44 @@ function cellClicked() {
 //checks to see if there is a winner after each click and displays a message if so. Will also determine draws
 function checkWinner() {
   if (
-    (cells[0].textContent === lastPlayerMove &&
-      cells[1].textContent === lastPlayerMove &&
-      cells[2].textContent === lastPlayerMove) ||
-    (cells[3].textContent === lastPlayerMove &&
-      cells[4].textContent === lastPlayerMove &&
-      cells[5].textContent === lastPlayerMove) ||
-    (cells[6].textContent === lastPlayerMove &&
-      cells[7].textContent === lastPlayerMove &&
-      cells[8].textContent === lastPlayerMove) ||
-    (cells[0].textContent === lastPlayerMove &&
-      cells[3].textContent === lastPlayerMove &&
-      cells[6].textContent === lastPlayerMove) ||
-    (cells[1].textContent === lastPlayerMove &&
-      cells[4].textContent === lastPlayerMove &&
-      cells[7].textContent === lastPlayerMove) ||
-    (cells[2].textContent === lastPlayerMove &&
-      cells[5].textContent === lastPlayerMove &&
-      cells[8].textContent === lastPlayerMove) ||
-    (cells[0].textContent === lastPlayerMove &&
-      cells[4].textContent === lastPlayerMove &&
-      cells[8].textContent === lastPlayerMove) ||
-    (cells[6].textContent === lastPlayerMove &&
-      cells[4].textContent === lastPlayerMove &&
-      cells[2].textContent === lastPlayerMove)
+    (cells[0].textContent === gameState.lastPlayerMove &&
+      cells[1].textContent === gameState.lastPlayerMove &&
+      cells[2].textContent === gameState.lastPlayerMove) ||
+    (cells[3].textContent === gameState.lastPlayerMove &&
+      cells[4].textContent === gameState.lastPlayerMove &&
+      cells[5].textContent === gameState.lastPlayerMove) ||
+    (cells[6].textContent === gameState.lastPlayerMove &&
+      cells[7].textContent === gameState.lastPlayerMove &&
+      cells[8].textContent === gameState.lastPlayerMove) ||
+    (cells[0].textContent === gameState.lastPlayerMove &&
+      cells[3].textContent === gameState.lastPlayerMove &&
+      cells[6].textContent === gameState.lastPlayerMove) ||
+    (cells[1].textContent === gameState.lastPlayerMove &&
+      cells[4].textContent === gameState.lastPlayerMove &&
+      cells[7].textContent === gameState.lastPlayerMove) ||
+    (cells[2].textContent === gameState.lastPlayerMove &&
+      cells[5].textContent === gameState.lastPlayerMove &&
+      cells[8].textContent === gameState.lastPlayerMove) ||
+    (cells[0].textContent === gameState.lastPlayerMove &&
+      cells[4].textContent === gameState.lastPlayerMove &&
+      cells[8].textContent === gameState.lastPlayerMove) ||
+    (cells[6].textContent === gameState.lastPlayerMove &&
+      cells[4].textContent === gameState.lastPlayerMove &&
+      cells[2].textContent === gameState.lastPlayerMove)
   ) {
-    winnerDisplay.textContent = lastPlayerMove + " Wins!";
-    gameEnd = true;
-  } else if (numOfClicks === 9) {
+    winnerDisplay.textContent = gameState.lastPlayerMove + " Wins!";
+    gameState.gameEnd = true;
+  } else if (gameState.numOfClicks === 9) {
     winnerDisplay.textContent = "Draw!";
-    gameEnd = true;
+    gameState.gameEnd = true;
   }
 }
 
 //resets the board
 function resetBoard() {
-  lastPlayerMove = "O";
-  numOfClicks = 0;
-  gameEnd = false;
+    gameState.lastPlayerMove = "O";
+  gameState.numOfClicks = 0;
+  gameState.gameEnd = false;
   for (let i = 0; i < cells.length; i++) {
     cells[i].textContent = "";
   }
