@@ -1,9 +1,9 @@
 let cells = document.querySelectorAll(".row > div");
 let winnerDisplay = document.querySelector("#board > h2");
 let gameState = {
-    gameEnd: false,
-    numOfClicks: 0,
-    lastPlayerMove: "O"
+  gameEnd: false,
+  numOfClicks: 0,
+  lastPlayerMove: "O",
 };
 
 for (let i = 0; i < cells.length; i++) {
@@ -14,11 +14,11 @@ for (let i = 0; i < cells.length; i++) {
 function cellClicked() {
   if (gameState.gameEnd === true) {
     resetBoard();
-  } else if 
-    (event.target.textContent === "X" || event.target.textContent === "O") {
-        ;
-    }
-  else if (gameState.lastPlayerMove === "O") {
+  } else if (
+    event.target.textContent === "X" ||
+    event.target.textContent === "O"
+  ) {
+  } else if (gameState.lastPlayerMove === "O") {
     event.target.textContent = "X";
     gameState.lastPlayerMove = "X";
     ++gameState.numOfClicks;
@@ -69,7 +69,7 @@ function checkWinner() {
 
 //resets the board
 function resetBoard() {
-    gameState.lastPlayerMove = "O";
+  gameState.lastPlayerMove = "O";
   gameState.numOfClicks = 0;
   gameState.gameEnd = false;
   for (let i = 0; i < cells.length; i++) {
