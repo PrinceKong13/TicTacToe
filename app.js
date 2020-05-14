@@ -5,6 +5,16 @@ let gameState = {
   numOfClicks: 0,
   lastPlayerMove: "O",
 };
+let winningConditions = [
+    ".left",
+    ".right",
+    ".middle",
+    ".center",
+    ".top",
+    ".bottom",
+    ".diagonal-up",
+    ".diagonal-down",
+  ];
 
 for (let i = 0; i < cells.length; i++) {
   cells[i].addEventListener("click", cellClicked);
@@ -33,40 +43,21 @@ function cellClicked() {
 
 //checks to see if there is a winner after each click and displays a message if so. Will also determine draws
 function checkWinner() {
-  if (
-    (cells[0].textContent === gameState.lastPlayerMove &&
-      cells[1].textContent === gameState.lastPlayerMove &&
-      cells[2].textContent === gameState.lastPlayerMove) ||
-    (cells[3].textContent === gameState.lastPlayerMove &&
-      cells[4].textContent === gameState.lastPlayerMove &&
-      cells[5].textContent === gameState.lastPlayerMove) ||
-    (cells[6].textContent === gameState.lastPlayerMove &&
-      cells[7].textContent === gameState.lastPlayerMove &&
-      cells[8].textContent === gameState.lastPlayerMove) ||
-    (cells[0].textContent === gameState.lastPlayerMove &&
-      cells[3].textContent === gameState.lastPlayerMove &&
-      cells[6].textContent === gameState.lastPlayerMove) ||
-    (cells[1].textContent === gameState.lastPlayerMove &&
-      cells[4].textContent === gameState.lastPlayerMove &&
-      cells[7].textContent === gameState.lastPlayerMove) ||
-    (cells[2].textContent === gameState.lastPlayerMove &&
-      cells[5].textContent === gameState.lastPlayerMove &&
-      cells[8].textContent === gameState.lastPlayerMove) ||
-    (cells[0].textContent === gameState.lastPlayerMove &&
-      cells[4].textContent === gameState.lastPlayerMove &&
-      cells[8].textContent === gameState.lastPlayerMove) ||
-    (cells[6].textContent === gameState.lastPlayerMove &&
-      cells[4].textContent === gameState.lastPlayerMove &&
-      cells[2].textContent === gameState.lastPlayerMove)
-  ) {
-    winnerDisplay.textContent = gameState.lastPlayerMove + " Wins!";
-    gameState.gameEnd = true;
-  } else if (gameState.numOfClicks === 9) {
-    winnerDisplay.textContent = "Draw!";
-    gameState.gameEnd = true;
+  for (let i = 0; i < winningConditions.length; i++) {
+    let winCheck = document.querySelectorAll(winningConditions[i]);
+    if (
+      winCheck[0].textContent === gameState.lastPlayerMove &&
+      winCheck[1].textContent === gameState.lastPlayerMove &&
+      winCheck[2].textContent === gameState.lastPlayerMove
+    ) {
+      winnerDisplay.textContent = gameState.lastPlayerMove + " Wins!";
+      gameState.gameEnd = true;
+    } else if (gameState.numOfClicks === 9) {
+      winnerDisplay.textContent = "Draw!";
+      gameState.gameEnd = true;
+    }
   }
 }
-
 //resets the board
 function resetBoard() {
   gameState.lastPlayerMove = "O";
